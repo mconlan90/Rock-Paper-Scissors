@@ -2,25 +2,26 @@ const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
 const h1 = document.querySelector("h1");
+const result = document.querySelector("#result");
 let playerSelection;
 let computerSelection;
 
 rock.addEventListener('click', function() {
     playerSelection = "rock";
     computerSelection = computerPlay();
-    h1.innerText = playRound(playerSelection, computerSelection);
+    result.innerText = playRound(playerSelection, computerSelection);
 })
 
 paper.addEventListener('click', function() {
     playerSelection = "paper";
     computerSelection = computerPlay();
-    h1.innerText = playRound(playerSelection, computerSelection);
+    result.innerText = playRound(playerSelection, computerSelection);
 });
 
 scissors.addEventListener('click', function() {
     playerSelection = "scissors";
     computerSelection = computerPlay();
-    h1.innerText = playRound(playerSelection, computerSelection);
+    result.innerText = playRound(playerSelection, computerSelection);
 })
 
 function computerPlay() {
