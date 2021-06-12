@@ -5,12 +5,17 @@
 <body>
     <section class="container">
         <h1>Rock, Paper, Scissors!</h1>
+        <h2>First to five is the winner</h2>
+        <p id="paraPlayer">Player Score: <span id="playerScore">0</span><br></p>
+        <p id="paraComputer">Computer Score: <span id="computerScore">0</span></p>
+        <button id="reset" class="reset">Reset Scores</button>
         <div class="buttons">   
             <input type="image" src="funny-rock.png"id="rock"/>
             <input type="image" src="paper.png" id="paper"/>
             <input type="image" src="scissors.png" id="scissors"/>
         </div>
-        <p id="result">Result</p>
+        <p id="result"> </p>
+        <p class="final-result" id="finalResult"> </p>
     </section>        
     <script src="rps.js"></script>
 </body>
