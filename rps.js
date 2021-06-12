@@ -6,9 +6,11 @@ const result = document.querySelector("#result");
 const displayPlayerScore = document.querySelector('#playerScore');
 const displayComputerScore = document.querySelector('#computerScore');
 const finalResult = document.querySelector("#finalResult");
+const resetScores = document.querySelector("#reset");
+const paraPlayer = document.querySelector("#paraPlayer");
+const paraComputer = document.querySelector("#paraComputer");
 let p1Score = 0;
 let p2Score = 0;
-let gameOver = false;
 let winningScore = 5;
 
 rock.addEventListener('click', function() {
@@ -22,6 +24,24 @@ paper.addEventListener('click', function() {
 scissors.addEventListener('click', function() {
     playButton("scissors");
 });
+
+resetScores.addEventListener('click', function() {
+    p1Score = 0;
+    p2Score = 0;
+    displayPlayerScore.textContent = p1Score;
+    displayComputerScore.textContent = p2Score;
+    displayPlayerScore.style.color = "";
+    displayPlayerScore.style.backgroundColor = "";
+    displayComputerScore.style.color = "";
+    displayComputerScore.style.backgroundColor = "";
+    paraComputer.style.backgroundColor = "";
+    paraComputer.style.color = "";
+    paraPlayer.style.backgroundColor= "";
+    paraPlayer.style.color = "";
+    finalResult.style.backgroundColor = "";
+    result.textContent = "";
+    finalResult.textContent = "";
+})
 
 function playButton(playerSelection) {
     result.innerText = playRound(playerSelection, computerPlay());
@@ -52,10 +72,22 @@ function displayPlayerLose(playerSelection, computerSelection) {
 function declareWinner() {
     if (p1Score === 5) {
       p1Score = 5;
+      result.textContent = "Game over";
       finalResult.textContent = "Player wins!";
+      displayPlayerScore.style.color = "#264653";
+      paraPlayer.style.backgroundColor = "#e9c46a";
+      paraPlayer.style.color = "#264653";
+      finalResult.style.backgroundColor = "#e9c46a";
+      finalResult.style.color = "#264653";
     } else if (p2Score === 5) {
       p2Score = 5;
+      result.textContent = "Game over";
       finalResult.textContent = "Computer wins!";
+      displayComputerScore.style.color = "#264653";
+      paraComputer.style.backgroundColor = "#e9c46a";
+      paraComputer.style.color= "#264653";
+      finalResult.style.backgroundColor = "#e9c46a";
+      finalResult.style.color = "#264653";
     }
 };
 

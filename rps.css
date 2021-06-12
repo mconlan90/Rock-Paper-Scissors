@@ -21,11 +21,21 @@ h1 {
     color: #e9c46a;
     font-family: monospace;
     font-size: 40pt;
+    margin: 0px 20px 20px 20px;
 }
+
+h2 {
+    color: #e9c46a;
+    font-family: monospace;
+    font-size: 20pt;
+    margin: 0px 20px 60px 20px;
+}
+
 p {
     color: #e9c46a;
     font-family: monospace;
     font-size: xx-large;
+    margin: 0px 10px 20px 10px;
 }
 
 .buttons {
@@ -43,5 +53,10 @@ p {
     /* border-radius: 50%; */
 }
 
-.final-result {
+.reset {
+    margin: 0px 0px 20px 0px;
+    background-color: #e9c46a;
+    color: #264653;
+    font-family: monospace;
+    font-size: 20px;
 }
