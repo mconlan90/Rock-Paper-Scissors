@@ -1,9 +1,11 @@
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
+const inputs = document.querySelectorAll("input");
 const result = document.querySelector("#result");
-const playerScore = document.querySelector('#playerScore');
-const computerScore = document.querySelector('#computerScore');
+const displayPlayerScore = document.querySelector('#playerScore');
+const displayComputerScore = document.querySelector('#computerScore');
+const finalResult = document.querySelector("#finalResult");
 let p1Score = 0;
 let p2Score = 0;
 
@@ -21,6 +23,9 @@ scissors.addEventListener('click', function() {
 
 function playButton(playerSelection) {
     result.innerText = playRound(playerSelection, computerPlay());
+    if (p1Score === 5 || p2Score === 5) {
+      declareWinner();
+    }
 };
 
 function computerPlay() {
@@ -30,7 +35,7 @@ function computerPlay() {
     return randomOption;
   };  
 
-  function capitalise(text) {
+function capitalise(text) {
     return text[0].toUpperCase() + text.slice(1);
   };
 
@@ -42,25 +47,55 @@ function displayPlayerLose(playerSelection, computerSelection) {
     return "You lose! " + computerSelection + " beats " + capitalise(playerSelection) + "!";
     };
 
+function declareWinner() {
+    if (p1Score === 5) {
+      finalResult.textContent = "Player wins!";
+    } else if (p2Score === 5) {
+      finalResult.textContent = "Computer wins!";
+    }
+};
+
+function keepPlayerScore() {
+    switch(true) {
+      case p1Score <= 4:
+        p1Score += 1;
+        displayPlayerScore.textContent = p1Score;
+        break;
+      case p1Score === 5 && p2Score < 5:
+        p1Score += 0;
+        finalResult.textContent = "Player wins!";
+        break;
+    }
+  };
+
+  function keepCpuScore() {
+    switch(true) {
+      case p2Score <= 4:
+        p2Score += 1;
+        displayComputerScore.textContent = p2Score;
+        break;
+      case p2Score === 5 && p1Score < 5:
+        p2Score += 0;
+        finalResult.textContent = "Computer wins!";
+        break;
+    }
+  };
+
 function playRound (playerSelection, computerSelection) {
       
     if ( (playerSelection === "rock" && computerSelection === "Scissors") ||
         (playerSelection === "scissors" && computerSelection === "Paper") ||
         (playerSelection === "paper" && computerSelection === "Rock") ) {
-        p1Score += 1;
-        playerScore.textContent = p1Score;
-      return displayPlayerWin(playerSelection, computerSelection);
+        keepPlayerScore();
+        return displayPlayerWin(playerSelection, computerSelection);
     } else if 
         ( (playerSelection === "scissors" && computerSelection === "Rock") ||
         (playerSelection === "paper" && computerSelection === "Scissors") ||
         (playerSelection === "rock" && computerSelection === "Paper") )  {
-        p2Score += 1;
-        computerScore.textContent = p2Score;
-          return displayPlayerLose(playerSelection, computerSelection);
+        keepCpuScore();
+        return displayPlayerLose(playerSelection, computerSelection);
       } else {
         return "It's a tie!";
       }
     };
 
-
-    
