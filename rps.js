@@ -8,6 +8,8 @@ const displayComputerScore = document.querySelector('#computerScore');
 const finalResult = document.querySelector("#finalResult");
 let p1Score = 0;
 let p2Score = 0;
+let gameOver = false;
+let winningScore = 5;
 
 rock.addEventListener('click', function() {
     playButton("rock");
@@ -49,35 +51,31 @@ function displayPlayerLose(playerSelection, computerSelection) {
 
 function declareWinner() {
     if (p1Score === 5) {
+      p1Score = 5;
       finalResult.textContent = "Player wins!";
     } else if (p2Score === 5) {
+      p2Score = 5;
       finalResult.textContent = "Computer wins!";
     }
 };
 
 function keepPlayerScore() {
-    switch(true) {
-      case p1Score <= 4:
-        p1Score += 1;
-        displayPlayerScore.textContent = p1Score;
-        break;
-      case p1Score === 5 && p2Score < 5:
-        p1Score += 0;
-        finalResult.textContent = "Player wins!";
-        break;
+    if (p1Score !== winningScore && p2Score < winningScore) {
+      p1Score += 1;
+      displayPlayerScore.textContent = p1Score;
+    } else if (p1Score === winningScore && p2Score < winningScore) {
+      p1Score += 0;
+      displayPlayerScore.textContent = p1Score;
     }
   };
 
-  function keepCpuScore() {
-    switch(true) {
-      case p2Score <= 4:
-        p2Score += 1;
-        displayComputerScore.textContent = p2Score;
-        break;
-      case p2Score === 5 && p1Score < 5:
-        p2Score += 0;
-        finalResult.textContent = "Computer wins!";
-        break;
+function keepCpuScore() {
+    if (p2Score !== winningScore && p1Score < winningScore) {
+      p2Score += 1;
+      displayComputerScore.textContent = p2Score;
+    } else if (p2Score === winningScore && p1Score < winningScore) {
+      p2Score += 0;
+      displayComputerScore.textContent = p2Score;
     }
   };
 
